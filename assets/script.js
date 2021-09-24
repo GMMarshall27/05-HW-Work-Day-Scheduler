@@ -1,18 +1,17 @@
 //set current day
 var today = moment();
 $("#currentDay").text(today.format("dddd, MMMM Do"));
-//
+//checks for current hour of day
 var currentHour = moment().format('H');
 var input = $('textarea');
-
+//function changes color of text area based off time
 input.each(function(i){
     if(currentHour > i+8){$(this).addClass('past')}
     else if(currentHour == i+8){$(this).addClass('present')}
     else if(currentHour < i+8){$(this).addClass('future')}
 });
-
+// functions for each hour to save to local storage
 $('#8am').on('click',function(){
-    
     var textarea = $('#hr8').val();
     localStorage.setItem('hr8',textarea);
 })
@@ -56,7 +55,7 @@ $('5pm').on('click',function(){
    localStorage.setItem('hr17',textarea);
    
 })
-
+//function to run through arrays of saved data to keep it on the page after a refresh
 function init(){
     savedInput();
 
@@ -75,7 +74,6 @@ function init(){
     }
     
     function inputValues(input,saved){
-        debugger
         for ( var i =0; i < saved.length; i++ ) {
             $('#'+saved[i]).val(input[i])
         }
